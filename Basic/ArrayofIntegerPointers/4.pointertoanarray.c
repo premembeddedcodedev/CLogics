@@ -1,5 +1,7 @@
 #include <stdio.h>
-  
+
+//This is just pointer storing individual array elements but we can pass arrays or structure pointers to array of pointers
+
 void main()
 {
     int arr[3] = { 1, 2, 3 };

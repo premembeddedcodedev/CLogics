@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#define MAX 3
+#define MAX 5
 
 int subset_divide(int index, int num[], int target[], int seq, int *subset)
 {
@@ -39,7 +39,7 @@ int subset_divide(int index, int num[], int target[], int seq, int *subset)
 
 int main()
 {
-	int i, arr[4] = {1, 2, 3, 4}, target[12] = {}, index = 0, subset[16];
+	int i, arr[MAX+1] = {1, 2, 3, 4, 5, 6}, target[12] = {}, index = 0, subset[16];
 
 	//FIXME: if i use static array coming stack smash
 	//int *subset = malloc(sizeof(int) * 20); //allocation memory also not giving proper results.

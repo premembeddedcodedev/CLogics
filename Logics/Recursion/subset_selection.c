@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#define MAX 3
+
 int subset_divide(int index, int num[], int target[], int seq, int *subset)
 {
 	//printf("Function starts: \n");
@@ -8,7 +10,7 @@ int subset_divide(int index, int num[], int target[], int seq, int *subset)
 	int i;
 	static int j = 0, k = 0;
 
-	if(index > 3) {
+	if(index > MAX) {
 		//printf("\t\t");
 		for(i =0 ; i< seq; i++) {
 			//subset[k] = target[i];
@@ -40,7 +42,7 @@ int main()
 	int i, arr[4] = {1, 2, 3, 4}, target[12] = {}, index = 0, subset[16];
 
 	//FIXME: if i use static array coming stack smash
-	//int *subset = malloc(sizeof(int) * 20);
+	//int *subset = malloc(sizeof(int) * 20); //allocation memory also not giving proper results.
 
 	subset_divide(index, arr, target, 0, subset);
 

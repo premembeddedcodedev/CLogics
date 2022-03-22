@@ -9,6 +9,7 @@
 void small_stron_given_num_value(int num, int sum, char str[])
 {
 	int j = num - 1;
+
 	printf("num: %d sum: %d\n", num, sum);
 
 	sum = sum - num;
@@ -18,9 +19,11 @@ void small_stron_given_num_value(int num, int sum, char str[])
 	while(sum > 0) {
 		if(sum < MAX) {
 			str[j] = (char) ('a' + sum);
+			//printf("in if...%c, %d\n", str[j], sum);
 			sum = 0;
 		} else {
 			str[j] = 'z';
+			//printf("in else...%c\n", str[j]);
 			sum -= MAX;
 		}
 		j--;
@@ -40,7 +43,7 @@ int main(int argc, char *argv[])
 
 	small_stron_given_num_value(atoi(argv[1]), atoi(argv[2]), str);
 
-	while(i < 3)
+	while(i < 10)
 		printf("%c\t", str[i++]);
 
 	return 0;

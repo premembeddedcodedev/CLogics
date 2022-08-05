@@ -69,6 +69,13 @@ void CountSetBits(int n)
 	printf("Value: %d\n", count);
 }
 
+void PairWiseSwap(int x)
+{
+	x = (( x & 0xAAAAAAAA) | ( x & 0x55555555));
+
+	printf("Value: %X\n", x);
+}
+
 int main(int argc, char *argv[])
 {
 	int choice = 0, num = 0, value = 0;
@@ -85,6 +92,8 @@ int main(int argc, char *argv[])
 		printf("2.Set Range of bits\n");
 		printf("3.Clear Range of bits\n");
 		printf("4.Count setbits\n");
+		printf("5.Pairwise bits\n");
+
 		printf("Enter the choice: \t");
 		scanf("%d", &choice);
 
@@ -96,6 +105,7 @@ int main(int argc, char *argv[])
 				scanf("%d", &high);
 				Extractbits(atoi(argv[1]), low, high);
 				break;
+
 			case 2:
 				printf("Enter the low position: \n");
 				scanf("%d", &low);
@@ -105,6 +115,7 @@ int main(int argc, char *argv[])
 				scanf("%d", &value);
 				SetValueAt(atoi(argv[1]), low, high, value);
 				break;
+
 			case 3:
 				printf("Enter the low position: \n");
 				scanf("%d", &low);
@@ -112,9 +123,15 @@ int main(int argc, char *argv[])
 				scanf("%d", &high);
 				ClearValueAt(atoi(argv[1]), low, high);
 				break;
+
 			case 4:
 				CountSetBits(atoi(argv[1]));
 				break;
+
+			case 5:
+				PairWiseSwap(atoi(argv[1]));
+				break;
+
 			default:
 				break;
 		};

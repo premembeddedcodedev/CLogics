@@ -58,6 +58,17 @@ void Extractbits(int num, int low, int high)
 	printf("Extracted: %d\n", num);
 }
 
+void CountSetBits(int n)
+{
+	int count = 0;
+
+	while(n != 0) {
+		count += n & 1;
+		n = n >> 1;
+	}
+	printf("Value: %d\n", count);
+}
+
 int main(int argc, char *argv[])
 {
 	int choice = 0, num = 0, value = 0;
@@ -73,6 +84,7 @@ int main(int argc, char *argv[])
 		printf("1.Extract bits.\n");
 		printf("2.Set Range of bits\n");
 		printf("3.Clear Range of bits\n");
+		printf("4.Count setbits\n");
 		printf("Enter the choice: \t");
 		scanf("%d", &choice);
 
@@ -99,6 +111,9 @@ int main(int argc, char *argv[])
 				printf("Enter the high position: \n");
 				scanf("%d", &high);
 				ClearValueAt(atoi(argv[1]), low, high);
+				break;
+			case 4:
+				CountSetBits(atoi(argv[1]));
 				break;
 			default:
 				break;

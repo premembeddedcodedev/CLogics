@@ -1,3 +1,5 @@
 int data[max_array] = {0};
 	*.c:47:2: error: variable-sized object may not be initialized
    		47 |  int data[max_array] = {0};
+		
+if(front == -1 && rear == -1) { // TODO: front == rear == -1 is different from this instruction -- see the example in DS/CircularQ

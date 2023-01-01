@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-/* just post and pre increment*/
 int main()
 {
 	int i;

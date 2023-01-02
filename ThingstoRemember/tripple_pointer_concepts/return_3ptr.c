@@ -27,18 +27,31 @@ char ***string_print(char **str, char **str2)
 char ***string_print(char **str, char **str2)
 {
 	char ***result = (char *** )malloc(sizeof(char **));
-	
-	result[0] = (char ** )malloc(sizeof(char *));
+
+	//Result is ***(pointer pointing to array of strings) -> **(array of strings) -> * (string)
+
+
+	//FIX: Wont work //**result = (char * )malloc(sizeof(char *));
+	*result = (char ** )malloc(sizeof(char *));
+	//Working : //result[0] = (char ** )malloc(sizeof(char *));
 	result[1] = (char ** )malloc(sizeof(char *));
 	
-	result[0][0] = (char *) malloc(sizeof(char) * 10);
+	// FIX: WOnt work //*result = (char **) malloc(sizeof(char) * 10);
+	**result = (char *) malloc(sizeof(char) * 10);
+	//WOrkin: //result[0][0] = (char *) malloc(sizeof(char) * 10);
 	result[0][1] = (char *) malloc(sizeof(char) * 10);
+	result[0][2] = (char *) malloc(sizeof(char) * 10);
+	result[0][3] = (char *) malloc(sizeof(char) * 10);
+	result[0][4] = (char *) malloc(sizeof(char) * 10);
+	result[0][5] = (char *) malloc(sizeof(char) * 10);
 	
 	strcpy(str[0], "Praveen V\0");
 	strcpy(str[1], "Prem V\0");
 
 	strcpy(result[0][0], str[0]);
 	strcpy(result[0][1], str[1]);
+
+	printf("pv: %s: \n", str[0]);
 
 	return result;
 }

@@ -3,43 +3,17 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define SIZE 10
-
-bool is_palindrome(char *s, int index, int len, int *returnSize)
-{
-	int start = index, end = len;
-
-	while(start <= end) {
-		if(s[start++] != s[end--])
-			return false;
-		*returnSize += 1;
-	}
-
-	return true;
-}
-
 void subparition(char *s, int index, int* returnSize, int*** returnColumnSizes)
 {
 	int i, returnSize_value = 0;
-	bool valid = false;
 
-	if(index >= strlen(s) - 1) {
-		//**returnColumnSizes =  ;
-		return;
+	for(i=index; i<10; i++) {
+			*returnSize += 1;
+			//TODO: **returnSize++; is not same  as **returnSize += 1
+			printf("returnsize : %d\n", *returnSize);
 	}
 
-	for(i=index; i<strlen(s); i++) {
-		if(is_palindrome(s, index, i, &returnSize_value)) {
-			for(returnSize_value = index; returnSize_value <= i; returnSize_value++)
-				printf("%c", s[returnSize_value]);
-			*returnSize++;
-			
-			printf("\n");
-		}	
-	}
-
-	subparition(s, index+1, returnSize, returnColumnSizes);
-	//printf("New: \n");
+	printf("New: \n");
 
 }
 
@@ -53,14 +27,17 @@ char ***partition(char *s, int* returnSize, int** returnColumnSizes)
 	result[0] = (char **) malloc (sizeof(char *));
 
 	*returnSize = 0;
-	subparition(s, 0, returnSize, &result[0]);
+
+	printf("Praveen: Return Size : %d\n", *returnSize);
+
+	subparition(s, 0, returnSize, &returnColumnSizes);
 
 	return result;
 }
 
 int main()
 {
-	char arr[SIZE] = {"aabbaa"};
+	char arr[10] = {"aabbaa"};
 	char ***result;
 	int each_array;
 	int *array;

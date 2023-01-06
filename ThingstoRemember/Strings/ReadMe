@@ -1,0 +1,12 @@
+1. char *sting = "praveen"
+	char *ptr = sting;
+
+2. char sting[] = "praveen";
+	char *ptr = sting;
+
+3. char *ste[] = {"praveen", "prem"};
+	char **stw = ste;
+
+4. char ste[][] = {"praveen", "prem"};
+	func(ste[][4]);
+

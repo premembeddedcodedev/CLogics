@@ -20,7 +20,7 @@ void bruteforce(int a[], int b[], int size)
 		}
 	}
 
-	while(j--)
+	while(j--) // count and moving zeros to last
 	{
 		b[k++] = 0;
 	}
@@ -30,6 +30,8 @@ void bruteforce(int a[], int b[], int size)
 int *algo_1(int a[], int size)
 {
 	int i, first = 0, last = 0;
+
+	// Swap the fist zero position with number using 2 offset positions i and j
 
 	while(last < size) {
 		if(a[last] == 0)
@@ -51,7 +53,7 @@ int main()
 
 	//b = algo_1(a, 5);
 	
-	// you cant return array from caller function
+	// TODO: you cant return array from caller function
 	//b = bruteforce(a, b, 5);
 	bruteforce(a, b, 5);
 

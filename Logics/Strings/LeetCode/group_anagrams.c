@@ -1,10 +1,16 @@
 #include <stdio.h>
-#include <string.h>
+#include <malloc.h>
 
-char *** groupAnagrams(char str[][5], int strsSize, int* returnSize, int** returnColumnSizes)
+char *** groupAnagrams(char **str, int strsSize, int* returnSize, int** returnColumnSizes)
 {
+	char ***dest = (char ***) malloc (sizeof(char **));	
+	dest[0] = (char **) malloc (sizeof(char *));
+	dest[0][0] = (char *) malloc (sizeof(char) * 10);
 
-		
+	//printf("%s\n", *str);
+
+
+	return dest;		
 }
 
 int main(int argc, char *argv[])
@@ -17,16 +23,19 @@ int main(int argc, char *argv[])
 	scanf("%d", &strlen2);
 	int *num;
 
-	char str[num_srings][strlen2], ***dest;
+	//char str[num_srings][strlen2], ***dest;
+	char *str[num_srings], ***dest;
 
 	printf("Enter the strings:\n");
 	while(i<num_srings)
 		scanf("%s", str[i++]);
 		//gets(str[i++]);
 		//fgets(str[i++], strlen2, stdin);
-	i = 0;
-	while(i<num_srings)
-		printf("%s\t", str[i++]);
+	//i = 0;
+	//while(i<num_srings)
+	//	printf("%s\t", str[i++]);
+
+	//printf("Completed Main\n");
 
 	//char *ste = str;
 	//char *ste[2] = {"prem", "praveen"};

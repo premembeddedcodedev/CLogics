@@ -17,10 +17,15 @@ int subarraySum(int* nums, int numsSize, int k)
 
 	j = 0;
 
+	int check = 0;
+
 	while(j < numsSize) {
 		//2. here directly checking sum of offsets are equal to k
-		if((sum[j] == k))
+		if((sum[j] == k)) {
+			printf(" Array started from : %d to %d\n", check, j);
 			count += 1;
+			check++;
+		}
 	
 		//3. this is the corner logic, checking if the sum of offsets are greater than k and if we already
 		// calculated/found the same sum. then its like found sum offset already giving k right
@@ -28,8 +33,11 @@ int subarraySum(int* nums, int numsSize, int k)
 		if((sum[j]  > k)) {
 			i = 0;
 			while(i<j) {
-				if(sum[j] - k == sum[i])
+				if(sum[j] - k == sum[i]) {
 					count +=1;
+					printf(" Array started from : %d to %d\n", i+1, j);
+					check = 0;
+				}
 				i++;
 			}
 		}

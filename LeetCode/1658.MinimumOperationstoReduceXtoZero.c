@@ -41,7 +41,7 @@ int solve(int *nums, int x, int left, int right, int count)
 
 int minOperations_1(int* nums, int numsSize, int x)
 {
-	int result =  solve(nums, x, 0, numsSize-1, 0);
+	int result =  solve(nums, x, 0, numsSize, 0);
 	return (result == -1) ? -1 : result;
 }
 

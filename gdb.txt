@@ -12,6 +12,7 @@ ctrl + x + o to switch the windows between gdb and tui source code
 
 Commands:
   1. Display - will show the variable status for each iteration
+    a. undisplay <number> -- number will come when we set display command for the first for the variable
   2. p - will show only one time display the variable
   3. finish - step out
   4. step-in - 'S'
@@ -34,3 +35,4 @@ Commands:
   12. set varible - set variable a = 5
   13. assign a=5
   14. Checkpoints
+  

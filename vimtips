@@ -1,0 +1,3 @@
+vsplit filename
+e <filename>
+ctags -uR *

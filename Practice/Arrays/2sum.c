@@ -9,12 +9,9 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
 	int k = 0, l = 0, m = 0;
 
 	for(int i = 0; i<numsSize; i++) {
-
 		for(int j=0; j< numsSize; j++) {
-			
 			if(i == j)
 				continue;
-
 			if(nums[i] + nums[j] == target) {
 				list[0] = i;
 				list[1] = j;
@@ -73,7 +70,7 @@ int* twoSum2(int* nums, int numsSize, int target, int* returnSize)
 
 int main()
 {
-	int arr[] = {2, 6, 5, 8, 11}, target = 14;
+	int arr[] = {2, 5, 7, 11}, target = 12;
 	int ptr = 0, list[2], *list2;
 
 	list2 = twoSum(arr, sizeof(arr)/sizeof(int), target, &ptr);

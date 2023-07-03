@@ -15,7 +15,7 @@ int main()
 	printf("value: %d\n", add(10, 20));
 
 	string(praveen);
-
+#if 0
 	{ \
 		int temp, a = 10, b = 20;\
                 temp = a;\
@@ -23,9 +23,9 @@ int main()
                 b = temp;\
                 printf("%d, %d\n", a, b);\
 	}
+#endif	
 	
-	
-	//swap(20, 30);
+	swap(20, 30);
 
 	return 0;
 }

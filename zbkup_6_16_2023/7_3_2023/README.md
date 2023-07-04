@@ -1,2 +1,0 @@
-# CLogics
-Internals of C

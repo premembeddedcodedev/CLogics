@@ -60,7 +60,7 @@ int main()
         for(i=0;i<arraybound;i++)
                 scanf("%d", &a[i]);
 
-        printf("No.of Subarrays: %d\n",minOperations_1(a, arraybound, K));
+        printf("No.of Subarrays: %d\n",minOperations(a, arraybound, K));
 
 
         return 0;

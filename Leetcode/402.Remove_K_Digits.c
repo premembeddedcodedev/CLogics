@@ -1,3 +1,5 @@
+//https://www.youtube.com/watch?v=3QJzHqNAEXs
+// https://leetcode.com/problems/remove-k-digits/
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>

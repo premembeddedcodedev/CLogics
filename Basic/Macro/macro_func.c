@@ -4,11 +4,11 @@
 
 #define string(i) printf(#i "\t adding\n")
 
-#define swap(a,b)\ ({int temp;\
+#define swap(a,b)\ ((int temp;\
 		temp = a;\
 		a = b;\
 		b = temp;\
-		printf("%d, %d", a, b);})
+		printf("%d, %d", a, b);))
 
 int main()
 {

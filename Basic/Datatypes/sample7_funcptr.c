@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-#define R 10
+#define R 30
 #define C 20
 
 int main()

@@ -38,7 +38,6 @@ int main()
 	printf("01 - String's ptr : %s\n", ptr[0][1]);
 	printf("01 - String's ptr : %s\n", ptr[0][2]);
 
-
 #if 0
 	printf("00 - String's ptr : %s\n", ptr[0][0]);
 	printf("01 - String's ptr : %s\n", ptr[0][1]);

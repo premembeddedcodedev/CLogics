@@ -41,21 +41,14 @@ void subparition(char ***result, char *s, int index, int end, int *returnSize, i
 		}
 		return;
 	}
-	//printf("\t\t\tBefore Recursion ===> %d\n", index);
 
 	target[j] = s[index];
-	j += 1; // call will not come here when return calls
-
+	j += 1; 
 	index += 1;
 
 	subparition(result, s, index, j, returnSize, returnColumnSizes, target);
-	//printf("\t\t\tindex ====> %d\n", index);
 
-	// this call returns from if condition above 
 	subparition(result, s, index, --j, returnSize, returnColumnSizes, target);
-	//printf("\t\t\t2nd index ====> %d\n", index);
-
-	//subset[0] = 0;
 
 	return;
 }
@@ -78,7 +71,7 @@ char ***partition(char *s, int *returnSize, int** returnColumnSizes, char *targe
 
 int main()
 {
-	char *arr = {"aabbaa"};
+	char *arr = {"aab"};
 	char target[strlen(arr)];
 	char ***result;
 	int each_array;

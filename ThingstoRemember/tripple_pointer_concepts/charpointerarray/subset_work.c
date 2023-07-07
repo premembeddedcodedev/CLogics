@@ -68,7 +68,7 @@ char ***partition(char *s, int *returnSize, int** returnColumnSizes, char *targe
 
 int main()
 {
-	char arr[10] = {"aba"}, target[100];
+	char arr[10] = {"aabbaa"}, target[100];
 	char ***result;
 	int each_array;
 	int *array[10];

@@ -9,15 +9,23 @@ void subparition(char ***result, char *s, int index, int end, int *returnSize, i
 	static int j = 0, k = 0;
 
 	if(index >= strlen(s)) {
-		printf("Exit : Seq %d\n", end);
-		//result[0] = (char **) realloc (result[0], sizeof(char *) * (*returnSize+1));
-		result[*returnSize][0] = malloc(end);
-		returnColumnSizes[*returnSize] = malloc(4);
+		printf("Exit %d ptr: Seq %d\n", *returnSize, end);
+		result[0] = (char **) realloc (result[0], sizeof(char *) * (*returnSize + 1));
+		result[0][*returnSize] = malloc(end);
+		returnColumnSizes[*returnSize] = malloc(sizeof(int));
+#if NOTWORKING
+		if(end-1 > 0)
+			strncpy(result[0][*returnSize], s, end);
+		else
+			strncpy(result[0][*returnSize], s, 1);
+#else
+	
 		for(i =0 ; i< end; i++) {
-			result[*returnSize][0][i] = target[i];
-			printf("Normal: %c->\t pointer : %c-> \t", target[i], result[*returnSize][0][i]);
+			result[0][*returnSize][i] = target[i];
+			printf("Normal: %c->\t pointer : %c-> \t", target[i], result[0][*returnSize][i]);
 		}
-		//result[*returnSize][0][i] = '\0';
+#endif
+		result[0][*returnSize][i] = '\0';
 		*returnColumnSizes[*returnSize] = end;
 		*returnSize += 1;
 		printf("\n");
@@ -45,24 +53,15 @@ void subparition(char ***result, char *s, int index, int end, int *returnSize, i
 char ***partition(char *s, int *returnSize, int** returnColumnSizes, char *target)
 {
 	char ***result = (char ***) malloc (sizeof(char **)); 
-
-	result[0] = (char **)malloc (sizeof(char *));
-	result[1] = (char **)malloc (sizeof(char *));
-	result[2] =(char **)malloc (sizeof(char *));
-	result[3] =(char **)malloc (sizeof(char *));
-	result[4] = (char **)malloc (sizeof(char *));
-	result[5] = (char **)malloc (sizeof(char *));
-	result[6] = (char **)malloc (sizeof(char *));
-	result[7] = (char **)malloc (sizeof(char *));
-
-	*returnSize = 0;
-
-	subparition(result, s, 0, 0, returnSize, returnColumnSizes, target);
-
-	printf("Praveen: Return Size : %d\n", *returnSize);
 	
-	for(int i = 0; i<*returnSize; i++)
-		printf("String : %s\n", result[i][0]);
+	*returnSize = 0;
+	
+	result[*returnSize] = (char **) malloc (sizeof(char *));
+	
+	subparition(result, s, 0, 0, returnSize, returnColumnSizes, target);
+	
+	printf("Praveen: Return Size : %d\n", *returnSize);
+
 
 	return result;
 }
@@ -74,9 +73,17 @@ int main()
 	int each_array;
 	int *array[10];
 
-	//array = (int *) malloc(sizeof(int));
-
 	result = partition(arr, &each_array, array, target);
+
+	for(int i = 0; i<each_array; i++)
+		printf("String (%d) : %s\n", i, result[0][i]);
+	
+	for(int i = 0; i<each_array; i++) {
+		free(result[0][i]);
+	}
+
+	free(*result);
+	free(result);
 
 	return 0;
 }

@@ -1,51 +1,92 @@
 #include <stdio.h>
 #include <malloc.h>
-
+#include <string.h>
 #define MAX 5
 
-int subset_divide(int index, int num[], int target[], int seq, int *subset)
+void subparition(char ***result, char *s, int index, int end, int *returnSize, int** returnColumnSizes, char *target)
 {
-	//printf("Function starts: \n");
-
 	int i;
 	static int j = 0, k = 0;
 
-	if(index > 2) {
-		printf("Exit : Seq %d\n", seq);
-		for(i =0 ; i< seq; i++)
-			printf("%d->", target[i]);
-
+	if(index >= strlen(s)) {
+		printf("Exit %d ptr: Seq %d\n", *returnSize, end);
+		result[0] = (char **) realloc (result[0], sizeof(char *) * (*returnSize + 1));
+		result[0][*returnSize] = malloc(end);
+		returnColumnSizes = realloc(returnColumnSizes, sizeof(int *) * (*returnSize + 1));
+		returnColumnSizes[*returnSize] = malloc(sizeof(int));
+#if NOTWORKING
+		if(end-1 > 0)
+			strncpy(result[0][*returnSize], s, end);
+		else
+			strncpy(result[0][*returnSize], s, 1);
+#else
+	
+		for(i =0 ; i< end; i++) {
+			result[0][*returnSize][i] = target[i];
+			printf("Normal: %c->\t pointer : %c-> \t", target[i], result[0][*returnSize][i]);
+		}
+#endif
+		result[0][*returnSize][i] = '\0';
+		*returnColumnSizes[*returnSize] = end;
+		*returnSize += 1;
 		printf("\n");
-		return 0;
+		return;
 	}
 	//printf("\t\t\tBefore Recursion ===> %d\n", index);
 
-	target[j] = num[index];
+	target[j] = s[index];
 	j += 1; // call will not come here when return calls
 
-	subset_divide(++index, num, target, j, subset);
+	index += 1;
+
+	subparition(result, s, index, j, returnSize, returnColumnSizes, target);
 	//printf("\t\t\tindex ====> %d\n", index);
 
 	// this call returns from if condition above 
-	subset_divide(index, num, target, --j, subset);
+	subparition(result, s, index, --j, returnSize, returnColumnSizes, target);
 	//printf("\t\t\t2nd index ====> %d\n", index);
 
-	subset[0] = 0;
+	//subset[0] = 0;
 
-	return 0;
+	return;
+}
+
+char ***partition(char *s, int *returnSize, int** returnColumnSizes, char *target)
+{
+	char ***result = (char ***) malloc (sizeof(char **)); 
+	
+	*returnSize = 0;
+	
+	result[*returnSize] = (char **) malloc (sizeof(char *));
+	
+	subparition(result, s, 0, 0, returnSize, returnColumnSizes, target);
+	
+	printf("Praveen: Return Size : %d\n", *returnSize);
+
+
+	return result;
 }
 
 int main()
 {
-	int i, arr[3] = {3,1,2}, target[12] = {}, index = 0, subset[16];
+	char arr[10] = {"aabbaa"}, target[1000];
+	char ***result;
+	int each_array;
+	int **array;
 
-	//FIXME: if i use static array coming stack smash
-	//int *subset = malloc(sizeof(int) * 20); //allocation memory also not giving proper results.
+	array = malloc(0);
 
-	subset_divide(index, arr, target, 0, subset);
+	result = partition(arr, &each_array, array, target);
 
-//	for(i = 0; i<16; i++)
-//		printf(" %d", subset[i]);
+	for(int i = 0; i<each_array; i++)
+		printf("String (%d) : %s\n", i, result[0][i]);
+	
+	for(int i = 0; i<each_array; i++) {
+		free(result[0][i]);
+	}
+
+	free(*result);
+	free(result);
 
 	return 0;
 }

@@ -5,3 +5,22 @@
 2. tripple_pointer_concepts/polindrome_subset_with_pointer_to_array.c
 
 3. Basic/2-D/
+
+Reference Site:  https://aticleworld.com/string-interview-questions-in-c/
+
+392. Is Subsequence - https://leetcode.com/problems/is-subsequence/
+792. Number of Matching Subsequences - https://leetcode.com/problems/number-of-matching-subsequences/
+
+
+There are 2 methods: <https://www.youtube.com/watch?v=PwQnydsKk_I>
+
+Method - 1:
+1. since we need to maaintain order from each character as is from master string - we need to maintain the position variable
+2. start comparing slave string with master string by updating master string position.
+
+Method - 2:
+1. Map approach
+2. find the keys occurance in the hash table with arrays
+3. compare with them with slave string with position should be matched with master as is.
+
+

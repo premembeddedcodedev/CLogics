@@ -1,0 +1,5 @@
+1. Hamming Distance
+	=> LL461.hamming_distance file
+		logic - 1: iterate bit count and see bit set or bit zero and count whenever there is a difference.
+		logic - 2: xor two numbers and it will give number of bit sets and iterate and trim down bit position and count
+

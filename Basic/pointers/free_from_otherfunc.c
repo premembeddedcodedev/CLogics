@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int *caller(int a[])
+int *caller(int b[])
 {
-	printf("func: ibefore: ptr : %p\n", a);
+	printf("func: b array: %p\n", b);
 	
 	int *ptr = malloc(40);
 	
-	printf("func: after: ptr : %p\n", a);
-	
+	printf("after allocation: ptr : %p\n", ptr);
+
+	*ptr = 30;
+
 	return ptr;
 
 }
@@ -17,13 +19,16 @@ int main()
 {
 	int *a, b[10] = {};
 	
-	printf("iBefore: A: %p\n", a);
+	printf("main: A ptr: %p, b array: %p\n", a, b);
 
 	a = caller(b);
 
-	printf("After: A: %p\n", a);
+	printf("After: A address : %p\n", a);
+	printf("After: A value : %d\n", *a);
 
 	free(a);
+
+	printf("after free value : %d\n", *a);
 
 	return 0;
 }

@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/palindrome-partitioning/solutions/544305/c-solution/
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>

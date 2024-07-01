@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 int partition(int nums[], int lb, int ub)
 {
 	int start = lb;
@@ -41,10 +41,51 @@ void quick_sort(int nums[], int start, int size)
 	}
 }
 
-int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
-{
-	int **result = malloc(0);
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
+	int ii;
+	//bubble_sort(nums, numsSize);
+	quick_sort(nums, 0, numsSize);
+	*returnSize=0;
+	int **arr=(int**)malloc(sizeof(int*) * numsSize);
+	*returnColumnSizes=(int*)malloc(sizeof(int) * numsSize);
 
+	int i, low, high = 0;
+	int sum = 0;
+	int target = 0;
+
+	for  (i = 0; nums[i] <= 0 && i < numsSize -2;) {
+		low = i + 1;
+		high = numsSize - 1;
+
+		while ( low < high) {
+			sum = nums[i] + nums[low] + nums[high];
+			if (sum > target)
+				high--;
+			else if (sum < target)
+				low++;
+			else {
+				(*returnColumnSizes)[*returnSize]=3;
+				arr[*returnSize] = (int*)malloc(sizeof(int)*3);
+				arr[*returnSize][0] = nums[i];
+				arr[*returnSize][1] = nums[low];
+				arr[*returnSize][2] = nums[high];
+				(*returnSize) += 1;
+				do high--; while(nums[high] == nums[high+1] && low < high);
+			}
+		}
+		do i++; while (nums[i]==nums[i-1] && i < numsSize-2);
+	}
+
+	return arr;
+}
+
+int** threeSum2(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
+{
 	int i=0, j = 1, k = numsSize-1;
 
 	printf("Array order : \n");
@@ -66,13 +107,10 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 	{
 		if(j<k) {
 			if((nums[i] + nums[j] + nums[k]) == 0) {
-				returnColumnSizes[*returnSize] = malloc(sizeof(int));
-				// TODO: memset to 0 onbelow returnColumnSizes
-				*returnColumnSizes[*returnSize] = 3;
-				result[*returnSize] = (int *)malloc(sizeof(int) * 3);
-				result[*returnSize][0] = i;
-				result[*returnSize][1] = j;
-				result[*returnSize][2] = k;
+				returnColumnSizes[*returnSize] = malloc(sizeof(int)*3);
+				returnColumnSizes[*returnSize][0] = i;
+				returnColumnSizes[*returnSize][1] = j;
+				returnColumnSizes[*returnSize][2] = k;
 				(*returnSize)++;
 				int temp = nums[i];
 				i++;
@@ -94,29 +132,52 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
 		}
 	}
 
-	return result;
+	return returnColumnSizes;
 }
 
 int main()
 {
-	int nums[] = {-1,0,1,2,-1,-4}, target = 0, returnSize = 0, *returnColumnSizes[4];
+	int nums[] = {-1,0,1,2,-1,-4}, target = 0, returnSize = 0, *returnColumnSizes[3];
 	//int nums[] = {0,1,1}, target = 0, returnSize = 0, *returnColumnSizes[4];
 	//int nums[] = {0,0,0}, target = 0, returnSize = 0, *returnColumnSizes[4];
 
 	int **result = threeSum(nums, sizeof(nums)/sizeof(int), &returnSize, returnColumnSizes);
 
+        printf("return size: %d\n coloumn size", returnSize);
+        for(int i = 0; i< returnSize; i++) {
+                printf("%d, ", sizeof(*returnColumnSizes[i]));
+        }
+
+        printf("3sum is: \n \t");
+        for(int i=0; i<returnSize; i++) {
+                printf("[ ");
+                for(int j = 0; j<3; j++)
+                        printf("%d,", result[i][j]);
+                //free(result[i]);
+                printf(" ]\n\t");
+        }
+        free(*returnColumnSizes);
+        printf("\n");
+
+#if 0
+	printf("return size: %d\n coloumn size", returnSize);
+	for(int i = 0; i< returnSize; i++) {
+		printf("%d, ", sizeof(*returnColumnSizes[i]));
+	}
+	printf("\n");
+
 	printf("3sum is: \n \t");
 	for(int i=0; i<returnSize; i++) {
 		printf("[ ");
-		for(int j = 0; j<*returnColumnSizes[i]; j++)
-			printf("%d,", nums[result[i][j]]);
+		for(int j = 0; j<3; j++)
+			printf("%d,", nums[returnColumnSizes[i][j]]);
 		free(returnColumnSizes[i]);
-		free(result[i]);
+		//free(result[i]);
 		printf(" ]\n\t");
 	}
 	printf("\n");
 
-	free(result);
-
+	//free(result);
+#endif
 	return 0;
 }

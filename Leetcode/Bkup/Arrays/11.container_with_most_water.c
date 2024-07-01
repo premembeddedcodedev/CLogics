@@ -3,6 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int calculate_area_water_1(int a[], int n)
+{
+	int start = 0, end = n-1, max_area=0, delta_off, volume;
+
+	while(start < end) {
+		delta_off = end - start;
+		volume = a[end] > a[start] ? a[start] : a[end];
+		max_area = max_area > (volume) ? max_area : (volume);
+		if(a[start] < a[end])
+			start++;
+		else
+			end--;
+	}
+
+	return max_area;
+}
 
 int calculate_area_water(int a[], int n)
 {
@@ -34,7 +50,7 @@ int main(int argc, char *argv[])
 	for(i=0; i<n; i++)
 		printf("%d ", a[i]);
 
-	printf("max: %d\n",calculate_area_water(a, n));
+	printf("max: %d\n",calculate_area_water_1(a, n));
 
 	return 0;
 }

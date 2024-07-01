@@ -1,53 +1,33 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#define MAX 5
+#define MAX 6
 
-int subset_divide(int index, int num[], int target[], int seq, int *subset)
+int subset_divide(int num[], int target[], int offset, int refseq)
 {
-	//printf("Function starts: \n");
+	static int j = 0;
 
-	int i;
-	static int j = 0, k = 0;
-
-	if(index > MAX) {
-		//printf("\t\t");
-		for(i =0 ; i< seq; i++) {
-			//subset[k] = target[i];
-			//printf(" %d", subset[i]);
-			//k++;
+	if(index >= MAX) {
+		for(int i =0 ; i< refseq; i++) 
 			printf(" %d", target[i]);
-		}
 			
 		printf(",\n");
 		return 0;
 	}
-	//printf("\t\t\tBefore Recursion ===> %d\n", index);
 
 	target[j] = num[index];
-	j += 1; // call will not come here when return calls
-
-	subset_divide(++index, num, target, j, subset);
-	//printf("\t\t\tindex ====> %d\n", index);
-
-	// this call returns from if condition above 
-	subset_divide(index, num, target, --j, subset);
-	//printf("\t\t\t2nd index ====> %d\n", index);
+	j += 1;
+	subset_divide(++index, num, target, j);
+	subset_divide(index, num, target, --j);
 
 	return 0;
 }
 
 int main()
 {
-	int i, arr[MAX+1] = {1, 2, 3, 4, 5, 6}, target[12] = {}, index = 0, subset[16];
+	int i, arr[MAX+1] = {1, 2, 3, 4, 5, 6}, target[12];
 
-	//FIXME: if i use static array coming stack smash
-	//int *subset = malloc(sizeof(int) * 20); //allocation memory also not giving proper results.
-
-	subset_divide(index, arr, target, 0, subset);
-
-//	for(i = 0; i<16; i++)
-//		printf(" %d", subset[i]);
+	subset_divide(0, arr, target, 0);
 
 	return 0;
 }

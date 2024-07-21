@@ -63,7 +63,7 @@ int main()
 
 	heap_from_bootom_top(bound);
 
-	heap_sort(bound);
+//	heap_sort(bound);
 
 	display(bound);	
 

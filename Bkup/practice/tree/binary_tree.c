@@ -355,7 +355,7 @@ int main()
 	TreeNode *root = create_tree();		
 	if(!root)
 		return -1;
-#if 0
+#if 1
 	int x, y;
 
 	printf(" enter nodes for sibling check : \n");
@@ -372,6 +372,7 @@ int main()
 		printf("%d, ", result[i]);
 #endif
 
+#if linkedlist
 	TreeNode *curr, *list = connect_withoutq(root);
 
 	curr = list;
@@ -387,7 +388,7 @@ int main()
 		printf("]\n");
 		curr = curr->left;
 	}
-
+#endif
 #if connect
 	TreeNode *curr, *list = connect(root);
 
